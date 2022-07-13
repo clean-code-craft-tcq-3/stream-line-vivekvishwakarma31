@@ -12,10 +12,7 @@ void TestCheckSenderReadsDatafromInputFile()
 }
 
 //To Check if the sender sends the sample or not.
-void TestCheckSamplesSend()
+void TestCheckSenderSentSamples()
 {
-  std::vector<float> temperature;
-  std::vector<float> stateOfCharge;
-  int numberOfSamples = 0;
   assert(SendBMSParameters() == SUCCESS); 
 }
