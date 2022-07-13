@@ -9,7 +9,6 @@ SenderStatus ReadBMSParametersFromInputFile(std::vector<float> &temperature, std
     SenderStatus readingFileStatus;
     ifstream inputFileStream;
     inputFileStream.open("./sample2.txt");
-    char *token;
     if (!inputFileStream)
     {
         readingFileStatus = SenderStatus::FAILURE;
