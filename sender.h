@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include<iterator>
 #define TOTALSAMPLES 50
 
 enum SenderStatus{
