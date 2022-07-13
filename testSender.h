@@ -7,5 +7,5 @@ void TestCheckSenderReadsDatafromInputFile()
   std::vector<float> temperature;
   std::vector<float> stateOfCharge;
   int numberOfSamples = 0;
-  assert(ReadBMSParametersFromInputFile(temperature, stateOfCharge, numberOfSamples) == SenderStatus::SUCCESS); 
+  assert(ReadBMSParametersFromInputFile(temperature, stateOfCharge, numberOfSamples) == SUCCESS); 
 }
