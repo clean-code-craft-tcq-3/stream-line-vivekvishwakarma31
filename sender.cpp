@@ -31,13 +31,13 @@ SenderStatus ReadBMSParametersFromInputFile(std::vector<float> &temperature, std
     return readingFileStatus;
 }
 
-void printBMSParamsOnConsole(std::vector<float> &temperature, std::vector<float> &stateOfCharge, int &numberOfSamples)
+SenderStatus printBMSParamsOnConsole(std::vector<float> &temperature, std::vector<float> &stateOfCharge, int &numberOfSamples)
 {
     for (int i = 0; i<numberOfSamples; i++)
     {
         printf(" Temperature:%.2f, StateofCharge:%.2f \n", (temperature[i]), (stateOfCharge[i]));  
     }
-    return;
+    return SenderStatus::SUCCESS;
 
 }
 
@@ -46,10 +46,10 @@ SenderStatus SendBMSParameters()
     std::vector<float> temperature;
     std::vector<float> stateOfCharge;
     int numberOfSamples = 0;
-    SenderStatus status_ReadfromFile
+    SenderStatus status_ReadfromFile status_PrintOnConsole;
     status_ReadfromFile =  ReadBMSParametersFromInputFile(temperature, stateOfCharge, numberOfSamples);
-    printBMSParamsOnConsole(temperature, stateOfCharge, numberOfSamples);
-    if(status_ReadfromFile == SenderStatus::SUCCESS)
+    status_PrintOnConsole = printBMSParamsOnConsole(temperature, stateOfCharge, numberOfSamples);
+    if( (status_ReadfromFile == SenderStatus::SUCCESS) && (status_PrintOnConsole == SenderStatus::SUCCESS))
     {
        return SenderStatus::SUCCESS;
     }
