@@ -29,3 +29,7 @@ jobs:
         name: coverage
         path: ./*.html
         retention-days: 21
+        
+    - name: Integrate Sender and Reciever
+      run: |
+          ./testchecker
