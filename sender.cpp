@@ -43,7 +43,7 @@ SenderStatus printBMSParamsOnConsole(std::vector<float> &temperature, std::vecto
 SenderStatus WriteBMSParamsToFile(std::vector<float> &temperature, std::vector<float> &stateOfCharge, int &numberOfSamples)
 {
     fstream outputFile;
-    outputFile.open("./SenderOutPut.txt", ios::out);
+    outputFile.open("SenderOutPut.txt", ios::out);
     char buffer[50];
     for (int i = 0; i<numberOfSamples; i++)
     {
