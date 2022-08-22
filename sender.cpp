@@ -40,15 +40,29 @@ SenderStatus printBMSParamsOnConsole(std::vector<float> &temperature, std::vecto
     return SenderStatus::SUCCESS;
 
 }
+SenderStatus WriteBMSParamsToFile(std::vector<float> &temperature, std::vector<float> &stateOfCharge, int &numberOfSamples)
+{
+    fstream outputFile;
+    outputFile.open("SenderOutPut.txt", ios::out);
+    char buffer[50];
+    for (int i = 0; i<numberOfSamples; i++)
+    {
+        sprintf_s(buffer, "Temperature:%.2f, StateofCharge:%.2f\n", (temperature[i]), (stateOfCharge[i]));
+        outputFile << buffer;
+    }
+    outputFile.close();
+    return SenderStatus::SUCCESS;
+}
 
 SenderStatus SendBMSParameters()
 {
     std::vector<float> temperature;
     std::vector<float> stateOfCharge;
     int numberOfSamples = 0;
-    SenderStatus status_ReadfromFile, status_PrintOnConsole, status_sender;
+    SenderStatus status_ReadfromFile, status_PrintOnConsole, status_sender, status_WriteToFile;
     status_ReadfromFile =  ReadBMSParametersFromInputFile(temperature, stateOfCharge, numberOfSamples);
     status_PrintOnConsole = printBMSParamsOnConsole(temperature, stateOfCharge, numberOfSamples);
+    status_WriteToFile = WriteBMSParamsToFile(temperature, stateOfCharge, numberOfSamples);
     if( (status_ReadfromFile == SenderStatus::SUCCESS) && (status_PrintOnConsole == SenderStatus::SUCCESS))
     {
        status_sender =  SenderStatus::SUCCESS;
