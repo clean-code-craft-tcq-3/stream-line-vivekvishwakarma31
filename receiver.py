@@ -65,10 +65,10 @@ class Recevier:
         sensor_data[1] = sensor_data[1].replace(" ", "")
 
         temperature_data = sensor_data[0].split(":")
-        new_temp_value = int(temperature_data[1])
+        new_temp_value = float(temperature_data[1])
 
         charge_data = sensor_data[1].split(":")
-        new_charge_value = int(charge_data[1])
+        new_charge_value = float(charge_data[1])
 
         self.computeMinMaxAvgSensorValues(new_temp_value, new_charge_value)
 
@@ -84,10 +84,10 @@ class Recevier:
 if __name__ == "__main__":
     recieiver = Recevier()
     print("Reciever Started")
-    while True:
-        try:
-            input_line = input()
-            print(input_line)
-        except EOFError:
-            break
+    output = open('output.txt', 'r')
+    Lines = output.readlines()
+
+    for line in Lines:
+        recieiver.handleInput(line)
+
     recieiver.printDetails()
