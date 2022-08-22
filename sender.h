@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include<iterator>
+#include <stdio.h>
 #define TOTALSAMPLES 50
 
 enum SenderStatus{
@@ -13,4 +14,5 @@ enum SenderStatus{
 
 SenderStatus ReadBMSParametersFromInputFile(std::vector<float> &temperature, std::vector<float> &stateOfCharge, int &numberOfSamples);
 SenderStatus printBMSParamsOnConsole(std::vector<float> &temperature, std::vector<float> &stateOfCharge, int &numberOfSamples);
+SenderStatus WriteBMSParamsToFile(std::vector<float> &temperature, std::vector<float> &stateOfCharge, int &numberOfSamples);
 SenderStatus SendBMSParameters();
