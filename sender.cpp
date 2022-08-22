@@ -44,12 +44,19 @@ SenderStatus WriteBMSParamsToFile(std::vector<float> &temperature, std::vector<f
 {
     cout << "WriteBMSParamsToFile 1" << numberOfSamples <<endl;
     fstream outputFile;
-    outputFile.open("./SenderOutPut.txt", ios::out);
+    outputFile.open("SenderOutPut.txt", ios::out);
     char buffer[50];
-    for (int i = 0; i<numberOfSamples; i++)
+    if (!my_file) {
+		cout << "File not created!";
+        return SenderStatus::FAILURE;
+	}
+    else
     {
+       for (int i = 0; i<numberOfSamples; i++)
+       {
         sprintf(buffer, "Temperature:%.2f, StateofCharge:%.2f\n", (temperature[i]), (stateOfCharge[i]));
         outputFile << buffer;
+       }
     }
     outputFile.close();
     return SenderStatus::SUCCESS;
