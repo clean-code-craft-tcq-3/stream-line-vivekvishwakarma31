@@ -55,6 +55,7 @@ SenderStatus WriteBMSParamsToFile(std::vector<float> &temperature, std::vector<f
        for (int i = 0; i<numberOfSamples; i++)
        {
         sprintf(buffer, "Temperature:%.2f, StateofCharge:%.2f\n", (temperature[i]), (stateOfCharge[i]));
+	cout << "buffer :" <<  buffer;   
         outputFile << buffer;
        }
     }
